@@ -1,0 +1,45 @@
+.crumb {
+    display: inline-block;
+    color: black;
+    background-color:whitesmoke;
+    text-decoration: none;
+}
+
+.cr-link {
+    display: block;
+    color: black;
+    text-decoration: none;
+}
+
+.cr-link:hover {
+    text-decoration: none; /* Убираем подчёркивание */
+}
+
+.cr-link:visited {
+    text-decoration: none;
+}
+
+.container{
+    margin-right: 0;
+    margin-left: 0;
+    text-decoration: none;
+    font-family: Gotham Pro Medium,sans-serif;
+}
+.book-list {
+    display: flex;
+    padding-bottom: 70px;
+    padding-top: 30px;
+    background: whitesmoke;
+}
+.g-4{
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+div{
+    display: block;
+}

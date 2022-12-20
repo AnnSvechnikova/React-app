@@ -1,0 +1,51 @@
+.crumb {
+    display: inline-block;
+    padding: 2px;
+    color: black;
+    text-decoration: none;
+}
+
+.cr-link {
+    color: black;
+    text-decoration: none;
+}
+
+.cr-link:hover {
+    text-decoration: none; /* Убираем подчёркивание */
+}
+
+.cr-link:visited {
+    text-decoration: none;
+}
+.book-page {
+    color:whitesmoke;
+}
+
+.bookImage {
+    float:right;
+    margin-top: 40px;
+    margin-right: 20px;
+}
+
+.bookText {
+    margin-left: 20px;
+    margin-top: 40px;
+    float:left;
+    color: black;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    min-width: 800px;
+}
+.containerLoading{
+    filter: blur(8px);
+}
+
+@media (max-width: 600px) {
+    .container{
+        min-width: auto;
+    }
+}

@@ -1,0 +1,38 @@
+.card{
+    width: 90%;
+    margin-bottom: 30px;
+    background-color: #97c7c6;
+    padding: 4px;
+    height: 90%;
+}
+
+.book{
+    width: 100%;
+    font-size: 30px;
+    line-height: 30px;
+    color: black;
+}
+
+.notInStock{
+    color: #9a2121;
+}
+
+.link {
+    color: black;
+    font-size: 30px;
+    text-decoration: none;
+    background-color: transparent;
+}
+.link:hover {
+    text-decoration: none; /* Убираем подчёркивание */
+}
+
+.link:visited {
+    text-decoration: none;
+}
+
+.cardImage{
+    width: 100%; /* Ширина изображений */
+    height: 100%; /* Высота изображении */
+    object-fit: cover; /* Вписываем фотографию в область */
+}
