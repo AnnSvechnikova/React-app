@@ -1,20 +1,26 @@
-.crumb {
+.nlink {
     display: inline-block;
-    padding: 2px;
     color: black;
     text-decoration: none;
+}
+
+.crumb + .crumb:before {
+    content: "/";
+
 }
 
 .cr-link {
+    display: inline-block;
     color: black;
     text-decoration: none;
 }
 
-.cr-link:hover {
-    text-decoration: none; /* Убираем подчёркивание */
+.nlink:hover {
+    color: whitesmoke;
+    text-decoration: none;
 }
 
-.cr-link:visited {
+.nlink:visited {
     text-decoration: none;
 }
 .book-page {
@@ -32,6 +38,10 @@
     margin-top: 40px;
     float:left;
     color: black;
+}
+
+.notInStock{
+    color: #9a2121;
 }
 
 .container{

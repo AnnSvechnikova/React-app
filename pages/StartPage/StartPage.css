@@ -5,6 +5,28 @@
     text-decoration: none;
 }
 
+.navigation {
+    background-color: #97c7c6;
+    font-size: 20px;
+    color: whitesmoke;
+    width: content-box;
+}
+
+.nlink {
+    width:25%;
+    display: inline-block;
+}
+
+.nlink:visited {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nlink:hover {
+    color:whitesmoke;
+    text-decoration: none;
+}
+
 .cr-link {
     display: block;
     color: black;

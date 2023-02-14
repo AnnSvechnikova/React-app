@@ -1,0 +1,30 @@
+.row {
+    color: black;
+    background-color: #97c7c6;
+}
+
+.cardButton{
+    text-decoration: none;
+    width: 25%;
+    height:25px;
+    font-size: 25px;
+    color: whitesmoke;
+    background-color: #478584;
+    border-radius: 25px 25px 25px 25px;
+    border-color: #478584;
+    display: inline-block;
+}
+.cardButton:hover {
+    background-color: #97c7c6;
+    color: #ffffff;
+    /*padding: 5px 10px;*/
+    border-radius: 25px 25px 25px 25px;
+    border-color: #478584;
+}
+
+.cardButton:disabled,
+.cardButton[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}

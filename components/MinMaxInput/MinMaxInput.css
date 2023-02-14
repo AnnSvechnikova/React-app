@@ -1,0 +1,15 @@
+.inputField{
+    display: flex;
+    padding: 12px 0;
+}
+.inputFieldMinMax > input{
+    width: 60px;
+    margin-right: 10px;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+}
+.inputFieldMinMax {
+    margin-left: 50px;
+    margin-bottom: 25px;
+}
