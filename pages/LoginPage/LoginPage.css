@@ -1,0 +1,82 @@
+form input {
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    height: 35px;
+    border: 1px solid whitesmoke;
+}
+
+.form{
+    display: block;
+    background: #63b9b8;;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    width: 60%;
+    color: whitesmoke;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.login {
+    width: 25%;
+    font-size: 14pt;
+    color: whitesmoke;
+    background: #63b9b8;
+    height: 55px;
+    padding: 10px;
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.authentication{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #63b9b8;
+    font-size: xx-large;
+}
+.block{
+    margin-left: 10%;
+    margin-right: 10%;
+    position: absolute;
+    top: 240px;
+    width:80%;
+}
+.registration{
+    text-decoration: none;
+    color: #63b9b8;
+    font-size: xx-large;
+    background-color: whitesmoke;
+
+}
+.registration:hover {
+    text-decoration: none; /* Убираем подчёркивание */
+    color: black; /* Цвет ссылки */
+    background: #97c7c6; /* Цвет фона */
+}
+
+@media (max-width: 460px) {
+    .form{
+        width:100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    form input {
+        width: 100%;
+    }
+
+    .form > .login {
+        width: 100%;
+    }
+
+    .registration, .authentication {
+        font-size: 20px;
+    }
+}

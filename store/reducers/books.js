@@ -1,10 +1,16 @@
 import { createSlice} from '@reduxjs/toolkit';
-import {getBooksAction, getBookByIdAction, getBookByNameAction, getBooksPriceRangeAction} from '../actions/books';
+import {
+    getBooksAction, getBookByIdAction, getBookByNameAction,
+    getBooksPriceRangeAction, patchBookAction, postBookAction, deleteBookAction
+} from '../actions/books';
 
 const initialState = {
     getBooksStatus: 'initial',
     getBookByIdStatus: 'initial',
     getBooksPriceRangeStatus: 'initial',
+    postBookStatus: 'initial',
+    patchBookStatus: 'initial',
+    deleteBookStatus: 'initial',
     books: [],
     booksPriceRange: {},
     error: null,
@@ -71,6 +77,47 @@ const booksSlice = createSlice({
             })
             .addCase(getBooksPriceRangeAction.rejected, (state, { error }) => {
                 state.getBooksPriceRangeStatus = 'error';
+                state.error = error;
+            });
+        builder
+            .addCase(postBookAction.pending, (state) => {
+                state.postBookStatus = 'fetching';
+                state.error = null;
+            })
+            .addCase(postBookAction.fulfilled, (state, { payload }) => {
+                state.postBookStatus = 'fetched';
+                state.books = payload;
+                state.error = null;
+            })
+            .addCase(postBookAction.rejected, (state, { error }) => {
+                state.postBookStatus = 'error';
+                state.error = error;
+            });
+        builder
+            .addCase(patchBookAction.pending, (state) => {
+                state.patchBookStatus = 'fetching';
+                state.error = null;
+            })
+            .addCase(patchBookAction.fulfilled, (state, { payload }) => {
+                state.patchBookStatus = 'fetched';
+                state.books = payload;
+                state.error = null;
+            })
+            .addCase(patchBookAction.rejected, (state, { error }) => {
+                state.patchBookStatus = 'error';
+                state.error = error;
+            });
+        builder
+            .addCase(deleteBookAction.pending, (state) => {
+                state.deleteBookStatus = 'fetching';
+                state.error = null;
+            })
+            .addCase(deleteBookAction.fulfilled, (state, { payload }) => {
+                state.deleteBookStatus = 'fetched';
+                state.error = null;
+            })
+            .addCase(deleteBookAction.rejected, (state, { error }) => {
+                state.deleteBookStatus = 'error';
                 state.error = error;
             });
     },

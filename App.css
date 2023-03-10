@@ -2,12 +2,12 @@ body {
   background: whitesmoke;
   font-family: Gotham Pro Medium,sans-serif;
   color: whitesmoke;
-  margin-top: 0 !important;
+  /*margin-top: 0 !important;*/
   height: 100%;
   width: 100%;
 }
 
-.cart {
+/*.cart {
   width: 65px;
   height: 100%;
   color: whitesmoke;
@@ -35,7 +35,7 @@ body {
 .auth:active{
   background-color: #478584;
 }
-
+*/
 div.wrap {
   width: 90%;
   height: 70px;

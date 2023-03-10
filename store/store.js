@@ -3,6 +3,7 @@ import {authReducer} from "./reducers/auth";
 import {booksReducer} from "./reducers/books";
 import {loaderReducer} from "./reducers/loader";
 import {ordersReducer} from "./reducers/orders";
+import {userReducer} from "./reducers/users";
 
 
 const reducer = combineReducers({
@@ -10,6 +11,7 @@ const reducer = combineReducers({
     loaderReducer,
     ordersReducer,
     authReducer,
+    userReducer,
 })
 
 export const store = configureStore({

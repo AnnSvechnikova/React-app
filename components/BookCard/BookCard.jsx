@@ -4,6 +4,7 @@ import './BookCard.css';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getOrdersAction, postOrderAction} from "../../store/actions/orders";
+import {OrderStatus} from "../../api/services/orders";
 
 function setDate(d) {
     return [
@@ -20,15 +21,11 @@ function addDays(d, n) {
 
 const BookCard = ({book_id, title, in_stock, price, picture}) => {
     const {orders,postOrderStatus, getOrdersStatus}=useSelector((store)=>store.ordersReducer)
-    const { isAuthorized } = useSelector((store) => store.authReducer);
+    const {user, isAuthorized } = useSelector((store) => store.userReducer);
     const [isChosen, setChosen]=useState(false);
     const dispatch=useDispatch();
     useEffect(()=>{
-        if (getOrdersStatus==='initial')
-            dispatch(getOrdersAction());
-    },[getOrdersStatus, dispatch])
-    useEffect(()=>{
-        if (Array.from(orders).find(e => e.book_id === book_id))
+        if (Array.from(orders).find(e => (e.book_id === book_id)&&(e.state === 'CREATED')))
             setChosen(true);
         //если есть заказ с таким id книги, то ставим true
     })
@@ -36,16 +33,16 @@ const BookCard = ({book_id, title, in_stock, price, picture}) => {
         setChosen(true);
         let d = new Date();
         dispatch(postOrderAction({
-            user_id:1,
+            user_id:user.user_id,
             book_id:book_id,
             amount:1,
             order_date:setDate(d),
-            pay_date:setDate(addDays(d, 2)),
+            //pay_date:setDate(addDays(d, 2)),
             deliv_date:setDate(addDays(d, 2)),
-            state: 'создан'
+            state: OrderStatus.CREATED
         }))
     },[postOrderStatus,dispatch]);
-
+    //console.log(book_id);
     return <Card className="card">
         <Card.Body className="cardBody">
             <Card.Img className="cardImage" src={picture}/>
@@ -63,7 +60,5 @@ const BookCard = ({book_id, title, in_stock, price, picture}) => {
         </Card>
 
 }
-
-
 
 export default BookCard;

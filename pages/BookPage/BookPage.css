@@ -1,50 +1,56 @@
-.nlink {
-    display: inline-block;
-    color: black;
-    text-decoration: none;
+form{
+    position: static;
+    margin-top: 30px;
 }
 
-.crumb + .crumb:before {
-    content: "/";
-
-}
-
-.cr-link {
-    display: inline-block;
-    color: black;
-    text-decoration: none;
-}
-
-.nlink:hover {
-    color: whitesmoke;
-    text-decoration: none;
-}
-
-.nlink:visited {
-    text-decoration: none;
-}
 .book-page {
-    color:whitesmoke;
+    flex: 1 1 300px;
+    padding: 15px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 200px;
 }
 
 .bookImage {
+    width: 90%;
+}
+
+.bookImage img {
+    max-width: 100%;
+    height: auto;
+}
+
+/*.bookImage {
     float:right;
     margin-top: 40px;
     margin-right: 20px;
-}
+}*/
 
 .bookText {
-    margin-left: 20px;
-    margin-top: 40px;
-    float:left;
+    width: 90%;
+    font-size: 20px;
+    /*line-height: 15px;*/
     color: black;
+    /**/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .notInStock{
     color: #9a2121;
 }
 
-.container{
+.delButton{
+    height: 40px;
+    color: whitesmoke;
+    background-color: #9a2121;
+}
+
+/*.container{
     display: flex;
     flex-direction: column;
     padding: 20px 40px;
@@ -58,4 +64,4 @@
     .container{
         min-width: auto;
     }
-}
+}*/

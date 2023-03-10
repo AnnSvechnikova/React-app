@@ -1,16 +1,30 @@
-.card{
-    width: 90%;
-    margin-bottom: 30px;
+.cardBody {
+    flex: 1 1 300px;
+    padding: 15px;
     background-color: #97c7c6;
-    padding: 4px;
-    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cardImage {
+    width: 80%;
+}
+
+.cardImage img {
+    max-width: 100%;
+    height: auto;
 }
 
 .book{
     width: 100%;
-    font-size: 25px;
-    line-height: 25px;
+    font-size: 20px;
+    /*line-height: 15px;*/
     color: black;
+    /**/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .notInStock{
@@ -19,7 +33,7 @@
 
 .link {
     color: black;
-    font-size: 25px;
+    font-size: 20px;
     text-decoration: none;
     background-color: transparent;
 }
@@ -31,11 +45,6 @@
     text-decoration: none;
 }
 
-.cardImage{
-    width: 100%; /* Ширина изображений */
-    height: 100%; /* Высота изображении */
-    object-fit: cover; /* Вписываем фотографию в область */
-}
 
 .cardButton{
     text-decoration: none;

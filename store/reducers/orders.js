@@ -1,11 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getOrdersAction, deleteOrderAction, postOrderAction, getBookInfoAction} from "../actions/orders";
+import {getOrdersAction, deleteOrderAction, postOrderAction, getBookInfoAction, patchOrderAction} from "../actions/orders";
 
 const initialState = {
     getOrdersStatus: 'initial',
     postOrderStatus: 'initial',
     deleteOrderStatus: 'initial',
     getBookInfoStatus: 'initial',
+    patchOrderStatus: 'initial',
     orders: [],
     bookInfo: [],
     error: null,
@@ -71,6 +72,20 @@ const ordersSlice = createSlice({
             })
             .addCase(getBookInfoAction.rejected, (state, { error }) => {
                 state.getBookInfoStatus = 'error';
+                state.error = error;
+            });
+        builder
+            .addCase(patchOrderAction.pending, (state) => {
+                state.patchOrderStatus = 'FETCHING';
+                state.error = null;
+            })
+            .addCase(patchOrderAction.fulfilled, (state, { payload }) => {
+                state.patchOrderStatus = 'FETCHED';
+                state.order = state.orders.filter((order) => order.order_id !== payload.id);
+                state.error = null;
+            })
+            .addCase(patchOrderAction.rejected, (state, { error }) => {
+                state.patchOrderStatus = 'ERROR';
                 state.error = error;
             });
     },

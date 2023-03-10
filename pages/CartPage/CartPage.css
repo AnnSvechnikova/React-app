@@ -1,5 +1,7 @@
-div {
+.cart {
     color: black;
+    position: absolute;
+    top: 240px;
 }
 .title {
     color: black;

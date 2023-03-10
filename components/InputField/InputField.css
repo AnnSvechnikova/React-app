@@ -9,3 +9,9 @@
     border-radius: 4px;
     outline: none;
 }
+
+@media (max-width: 300px) {
+    .inputField > input {
+        width: 50%;
+    }
+}

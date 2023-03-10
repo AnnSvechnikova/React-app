@@ -1,5 +1,6 @@
 //запросы к бэкенду (книги)
-import {getApiRequest} from "../index";
+import {getApiRequest, postApiRequest, patchApiRequest, deleteApiRequest} from "../index";
+
 
 export const getBooks = async (params)=>{
     return await getApiRequest('/books/',{
@@ -20,4 +21,17 @@ export const getBookByName = async (name) =>{
 
 export const getBooksPriceRange = async (params)=>{
     return await getApiRequest('/books/get_price_range/', {params:{}})
+}
+
+export const postBook = async (params)=>{
+    return await postApiRequest('/books/', params);
+}
+
+export const patchBookById = async (params)=>{
+    const {book_id, ...param}=params;
+    return await patchApiRequest(`/books/${book_id}/`, param);
+}
+
+export const deleteBook = async (id) => {
+    return await deleteApiRequest(`/books/${id}/`)
 }

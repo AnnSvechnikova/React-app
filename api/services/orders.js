@@ -1,8 +1,20 @@
 //запросы к бэкенду (заказы)
-import {deleteApiRequest, getApiRequest, postApiRequest} from "../index";
+import {deleteApiRequest, getApiRequest, patchApiRequest, postApiRequest} from "../index";
 
-export const getOrders = async ()=>{
-    return await getApiRequest('/orders/' )
+export const OrderStatus =Object.freeze({
+    CREATED: 'CREATED',
+    CANCELLED:'CANCELLED',
+    DELIVERED:'DELIVERED',
+    PAID:'PAID'
+});
+
+export const getOrders = async (params)=>{
+    return await getApiRequest('/orders/', {
+        params:{
+            user_id:params?.user_id,
+            status: params?.status
+        }
+    } )
 }
 
 export const postOrder = async (params)=>{
@@ -19,4 +31,9 @@ export const getBookInfo = async (params)=>{
             id:params?.id
         }
     })
+}
+
+export const patchOrder = async (params) =>{
+    const {id, ...other_params} = params;
+    return await patchApiRequest(`/orders/${id}/`, other_params);
 }

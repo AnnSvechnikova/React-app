@@ -13,38 +13,29 @@ import "./CartPage.css";
 
 const CartPage = () => {
     const {orders, bookInfo, getOrdersStatus, getBookInfoStatus} = useSelector((store) =>store.ordersReducer)
-    //const {books, getBooksStatus}=useSelector((store)=>store.booksReducer)
+    const {books, getBooksStatus}=useSelector((store)=>store.booksReducer)
     const dispatch =useDispatch();
-    const { isAuthorized } = useSelector((store) => store.authReducer);
+    const {user, isAuthorized } = useSelector((store) => store.userReducer);
+    useEffect(()=>{
+        if (getBooksStatus==='initial')
+            dispatch(getBooksAction());
+    },[getBooksStatus, dispatch])
     useEffect(()=>{
         if (getOrdersStatus==='initial')
-            dispatch(getOrdersAction());
-    },[getOrdersStatus, isAuthorized, dispatch])
-
-    //useLoader([getPurchaseStatus])
+        {console.log(user.id);
+            dispatch(getOrdersAction({user_id: user.user_id}));}
+    },[getOrdersStatus, dispatch])
     useEffect( () => {dispatch(resetOrderState());}, [dispatch]);
     if(!isAuthorized)
         return (
-            <div>
-                <Navbar bg="light" expand="lg">
-                    <Container className="navigation">
-                        <Nav.Link className="nlink" href="/">Главная страница</Nav.Link>
-                        <Nav.Link className="nlink">Корзина</Nav.Link>
-                    </Container>
-                </Navbar>
+            <div className="cart">
                 <div>Для просмотра списка заказов необходимо авторизоваться!</div>
             </div>
         )
     else
         return (
 
-            <div>
-                <Navbar bg="light" expand="lg">
-                    <Container className="navigation">
-                        <Nav.Link className="nlink" href="/">Главная страница</Nav.Link>
-                        <Nav.Link className="nlink">Корзина</Nav.Link>
-                    </Container>
-                </Navbar>
+            <div className="cart">
                 <Container className="ordrs">
                     <Table>
                         <thead className="title">

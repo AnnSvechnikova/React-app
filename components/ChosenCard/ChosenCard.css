@@ -1,0 +1,78 @@
+.cardBody {
+    flex: 1 1 300px;
+    padding: 15px;
+    background-color: #97c7c6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cardImage {
+    width: 80%;
+}
+
+.cardImage img {
+    max-width: 100%;
+    height: auto;
+}
+
+.book{
+    width: 100%;
+    font-size: 20px;
+    /*line-height: 15px;*/
+    color: black;
+    /**/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.notInStock{
+    color: #9a2121;
+}
+
+.link {
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: transparent;
+}
+.link:hover {
+    text-decoration: none; /* Убираем подчёркивание */
+}
+
+.link:visited {
+    text-decoration: none;
+}
+
+/*.cardImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+ }
+*/
+.cardButton{
+    text-decoration: none;
+    width: 25%;
+    height:25px;
+    font-size: 25px;
+    color: whitesmoke;
+    background-color: #478584;
+    border-radius: 25px 25px 25px 25px;
+    border-color: #478584;
+    display: inline-block;
+}
+.cardButton:hover {
+    background-color: #97c7c6;
+    color: #ffffff;
+    /*padding: 5px 10px;*/
+    border-radius: 25px 25px 25px 25px;
+    border-color: #478584;
+}
+
+.cardButton:disabled,
+.cardButton[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}

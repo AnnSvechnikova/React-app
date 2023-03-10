@@ -3,9 +3,10 @@ import './OrderRow.css';
 import Table from "react-bootstrap/Table";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getOrdersAction, postOrderAction, getBookInfoAction, deleteOrderAction} from "../../store/actions/orders";
+import {getOrdersAction, postOrderAction, getBookInfoAction, deleteOrderAction, patchOrderAction} from "../../store/actions/orders";
 import {getBooksAction} from "../../store/actions/books";
 import {get} from "axios";
+import {OrderStatus} from "../../api/services/orders";
 
 
 const OrderRow = ({order_id, book_id, amount, order_date, pay_date, deliv_date, state}) => {
@@ -19,10 +20,20 @@ const OrderRow = ({order_id, book_id, amount, order_date, pay_date, deliv_date, 
         if(getBooksStatus==='initial')
             dispatch(getBooksAction());
     },[getBooksStatus, dispatch]);
-    const deleteCard =useCallback(()=>{
+    const cancelOrder = useCallback((order_id)=>{
         console.log(order_id);
-        dispatch(deleteOrderAction(order_id));
-    },[deleteOrderStatus,dispatch])
+        dispatch(
+            patchOrderAction({
+                order_id:order_id,
+                book_id:book_id,
+                amount:amount,
+                order_date:order_date,
+                pay_date:null,
+                deliv_date:null,
+                state:OrderStatus.CANCELLED
+            })
+        )
+    },[dispatch])
     return (
         <tr className="row">
             <th>{order_id}</th>
@@ -34,7 +45,7 @@ const OrderRow = ({order_id, book_id, amount, order_date, pay_date, deliv_date, 
             <th>{pay_date}</th>
             <th>{deliv_date}</th>
             <th>{state}</th>
-            <th><button className="cardButton"  onClick={deleteCard}>-</button></th>
+            <th><button className="cardButton" onClick={cancelOrder}>-</button></th>
         </tr>
     )
 }
