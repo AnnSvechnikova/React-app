@@ -12,7 +12,7 @@ export const Loader = ({ zIndex }) => {
 
         const setTimeoutId = setTimeout(() => {
             setIsShow(false);
-        }, 1000);
+        }, 2500);
 
         return () => {
             clearTimeout(setTimeoutId);

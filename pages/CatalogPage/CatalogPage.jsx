@@ -9,6 +9,7 @@ import {resetBooksState} from "../../store/reducers/books";
 import MinMaxInput from "../../components/MinMaxInput/MinMaxInput";
 import {getOrdersAction} from "../../store/actions/orders";
 import {resetOrderState} from "../../store/reducers/orders";
+import {Loader} from "../../components/Loader";
 
 
 const CatalogPage = () => {
@@ -50,6 +51,7 @@ const CatalogPage = () => {
     useEffect(()=>() => {dispatch(resetBooksState());dispatch(resetOrderState)}, [dispatch]);
     return (
         <div className="container">
+            <Loader/>
             <InputField value = {searchValue} setValue={setSearchValue} loading={isLoading} onSubmit={handleSearch} buttonTitle="Найти"/>
             <MinMaxInput minvalue={searchMinValue} setMinValue={setSearchMinValue} maxValue={searchMaxValue} setMaxValue={setSearchMaxValue} loading={isLoading} minplaceholder={booksPriceRange.min_pr +' руб.'} maxplaceholder={booksPriceRange.max_pr + ' руб.'} onSubmit={handleSearchMinMax}/>
             <Container className="book-list">

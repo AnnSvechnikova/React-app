@@ -13,7 +13,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {logoutAction} from "./store/actions/users";
 import Navigation from "./components/Navigation";
 import AddBookPage from "./pages/AddBookPage";
-import EditOrdersPage from "./pages/EditOrdersPage";
+import EditOrdersPage from "./pages/EditOrderPage";
+import OrdersPage from "./pages/OrdersPage";
 
 
 const App = () =>{
@@ -36,12 +37,16 @@ const App = () =>{
                     <BookPage/>
                 </Route>
                 <Route path="/orders">
-                    {isAuthorized ? <CartPage/> :<LoginPage/>}
+                    {isAuthorized ? <OrdersPage/> :<LoginPage/>}
                 </Route>
                 <Route path="/auth"> <LoginPage/> </Route>
                 <Route path="/registration"><RegistrationPage/></Route>
-                <Route path="/addbook"><AddBookPage/></Route>
-                <Route path="/editorders"><EditOrdersPage/></Route>
+                <Route path="/addbook">
+                    {isAuthorized ? <AddBookPage/> :<LoginPage/>}
+                </Route>
+                <Route path="/cart">
+                    {isAuthorized ? <CartPage/> :<LoginPage/>}
+                </Route>
             </Switch>
         </BrowserRouter>
     );

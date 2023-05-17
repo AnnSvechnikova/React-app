@@ -1,0 +1,20 @@
+.inputField{
+    display: flex;
+    padding: 12px 0;
+    z-index: -1;
+    margin-right: 10px;
+}
+.DateInput > input{
+    width: 100px;
+    margin-right: 10px;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+}
+.DateInput {
+    margin-left: 50px;
+    margin-bottom: 25px;
+
+    z-index: -1;
+
+}

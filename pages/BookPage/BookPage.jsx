@@ -9,8 +9,11 @@ import {Container, Nav, Navbar} from "react-bootstrap";
 import { Field, Form } from 'react-final-form';
 import {Loader} from "../../components/Loader";
 
+
+
 const BookPage = () => {
-    let {id} = useParams()
+    let {id} = useParams();
+    //console.log(id);
     const dispatch = useDispatch();
     //console.log({book_id});
     const{books, getBookByIdStatus, patchBookStatus, deleteBookStatus}=useSelector((store) =>store.booksReducer)
@@ -18,50 +21,46 @@ const BookPage = () => {
     useEffect(()=>{
         if (getBookByIdStatus==='initial') {
             dispatch(getBookByIdAction(id));
-            console.log(books.title);
         }
     },[getBookByIdStatus,dispatch]);
-
     const deleteBook=useCallback(()=>{
-        dispatch(deleteBookAction(books.book_id));
+        dispatch(deleteBookAction(id));
     },[deleteBookStatus,dispatch])
-
     const patchBook = useCallback(
         (values) => {
             dispatch(patchBookAction({
-                book_id: Number(books.book_id),
+                book_id: id,
                 title: values?.title ?? books.title,
-                in_stock: values.in_stock ?? books.in_stock,
-                descr: values.descr ?? books.descr,
-                price: values.price ?? books.price,
-                picture: values.picture ?? books.picture,
+                in_stock: values?.in_stock ?? books.in_stock,
+                descr: values?.descr ?? books.descr,
+                price: values?.price ?? books.price,
+                picture: values?.picture ?? books.picture,
             }));
         },
-        [dispatch, patchBookStatus],
+        [getBookByIdStatus, patchBookStatus, dispatch],
     );
-    if (user && user.is_staff)
-        return(
+    return(
             <div className="block">
                 <Loader/>
-                <Form onSubmit={patchBook}>
+                <div className="book-page">
+                    <img className="bookImage" src={books.picture}/>
+                    <div className="bookText">
+                        <p>{books.title}</p>
+                        <p>{books.descr}</p>
+                        <p>Стоимость: {books.price} руб.</p>
+                        {(books.in_stock === 0)? (<p className="notInStock">Временно не в наличии</p>):
+                            (<p>Доступно {books.in_stock} шт.</p>)}
+                    </div>
+                </div>
+                {user ? user.is_staff ? (<Form onSubmit={patchBook}>
                     {({ handleSubmit}) => (
                         <form onSubmit={handleSubmit} className='form'>
-                            <Field name="id">
-                                {({ input, meta }) => (
-                                    <input
-                                        {...input}
-                                        placeholder={books.book_id}
-                                        className='input'
-                                        type='number'
-                                        defaultValue={books.book_id}
-                                    />
-                                )}
-                            </Field>
+
                             <Field name="title">
                                 {({ input, meta }) => (
                                     <input
                                         {...input}
-                                        placeholder={books.title}
+                                        placeholder="заголовок"
                                         className='input'
                                         defaultValue={books.title}
                                     />
@@ -72,8 +71,8 @@ const BookPage = () => {
                                     <input
                                         {...input}
                                         type='number'
+                                        placeholder='сколько в наличии'
                                         className='input'
-                                        placeholder={books.in_stock}
                                         defaultValue={books.in_stock}
                                     />
                                 )}
@@ -82,9 +81,9 @@ const BookPage = () => {
                                 {({ input, meta }) => (
                                     <input
                                         {...input}
-                                        placeholder={books.descr}
-                                        className='input'
                                         defaultValue={books.descr}
+                                        className='input'
+                                        placeholder='описание'
                                     />
                                 )}
                             </Field>
@@ -92,10 +91,10 @@ const BookPage = () => {
                                 {({ input, meta }) => (
                                     <input
                                         {...input}
-                                        placeholder={books.price}
+                                        defaultValue={books.price}
                                         type='number'
                                         className='input'
-                                        defaultValue={books.price}
+                                        placeholder='цена'
                                     />
                                 )}
                             </Field>
@@ -114,21 +113,11 @@ const BookPage = () => {
                             </button>
                         </form>
                     )}
-                </Form>
-                <button className="delButton"  onClick={deleteBook}>удалить книгу</button>
+                </Form>):(<></>): (<></>)}
+                {user? user.is_staff? (<button className="delButton"  onClick={deleteBook}>удалить книгу</button>):(<></>): (<></>)}
             </div>
         )
-    return (
-        <div className="book-page">
-            <Loader/>
-            <img className="bookImage" src={books.picture}/>
-            <div className="bookText">
-                <p>{books.descr}</p>
-                <p>Стоимость: {books.price} руб.</p>
-                {books.in_stock === 0 && <p className="notInStock">Временно не в наличии</p>}
-            </div>
-        </div>
-    )
+
 };
 
 export default BookPage;

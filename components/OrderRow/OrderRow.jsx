@@ -6,16 +6,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {getOrdersAction, postOrderAction, getBookInfoAction, deleteOrderAction, patchOrderAction} from "../../store/actions/orders";
 import {getBooksAction} from "../../store/actions/books";
 import {get} from "axios";
-import {OrderStatus} from "../../api/services/orders";
+import {OrderStates} from "../../api/services/orders";
+import {Loader} from "../Loader";
 
 
 const OrderRow = ({order_id, book_id, amount, order_date, pay_date, deliv_date, state}) => {
     //const {bookInfo, getBookInfoStatus}=useSelector((store)=>store.ordersReducer)
-    ///console.log(book_id);
-    const {deleteOrderStatus}= useSelector((store)=>store.ordersReducer)
+    const {deleteOrderStatus, patchOrderStatus}= useSelector((store)=>store.ordersReducer)
     const dispatch=useDispatch();
     const {books, getBooksStatus}=useSelector((store) =>store.booksReducer);
-    const { isAuthorized } = useSelector((store) => store.authReducer);
+    const { isAuthorized } = useSelector((store) => store.userReducer);
     useEffect(() => {
         if(getBooksStatus==='initial')
             dispatch(getBooksAction());
@@ -30,10 +30,11 @@ const OrderRow = ({order_id, book_id, amount, order_date, pay_date, deliv_date, 
                 order_date:order_date,
                 pay_date:null,
                 deliv_date:null,
-                state:OrderStatus.CANCELLED
+                state:OrderStates.CANCELLED
             })
         )
-    },[dispatch])
+    },[dispatch, patchOrderStatus])
+
     return (
         <tr className="row">
             <th>{order_id}</th>

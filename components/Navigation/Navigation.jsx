@@ -27,7 +27,7 @@ const Navigation = () => {
                     {(user && isAuthorized && user.is_staff)? (
                         <NavLink to='/' className='nav__link nav__link--card'>Меню</NavLink>
                     ):(
-                        <NavLink to='/orders' className='nav__link nav__link--card'>Корзина</NavLink>
+                        <NavLink to='/cart' className='nav__link nav__link--card'>Корзина</NavLink>
                         )}
                 </div>
                 <div className='nav__mobile-wrapper'

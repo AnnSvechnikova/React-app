@@ -1,10 +1,15 @@
-.cardBody {
+.orderCardBody {
+    margin-top: 30px;
     flex: 1 1 300px;
     padding: 15px;
-    background-color: #97c7c6;
+    background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 30px;
+    font-size: 13px;
+
+
 }
 
 .cardImage {
@@ -31,6 +36,12 @@
     color: #9a2121;
 }
 
+Form {
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
 .link {
     color: black;
     font-size: 20px;
@@ -51,7 +62,19 @@
     object-fit: cover;
  }
 */
-.cardButton{
+
+.delivButton, .paidButton{
+    font-size: 13px;
+    text-decoration: none;
+    width: 60%;
+    height:25px;
+    color: black;
+    background-color: whitesmoke;
+    border-color: #478584;
+    display: flex;
+    margin-top: 5px;
+}
+.cancelButton{
     text-decoration: none;
     width: 25%;
     height:25px;
@@ -62,7 +85,7 @@
     border-color: #478584;
     display: inline-block;
 }
-.cardButton:hover {
+.cancelButton:hover {
     background-color: #97c7c6;
     color: #ffffff;
     /*padding: 5px 10px;*/
@@ -70,8 +93,8 @@
     border-color: #478584;
 }
 
-.cardButton:disabled,
-.cardButton[disabled]{
+.cancelButton:disabled,
+.cancelButton[disabled]{
     border: 1px solid #999999;
     background-color: #cccccc;
     color: #666666;

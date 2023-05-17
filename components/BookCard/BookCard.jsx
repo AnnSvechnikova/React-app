@@ -4,9 +4,9 @@ import './BookCard.css';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getOrdersAction, postOrderAction} from "../../store/actions/orders";
-import {OrderStatus} from "../../api/services/orders";
+import {OrderStates} from "../../api/services/orders";
 
-function setDate(d) {
+export function setDate(d) {
     return [
         d.getFullYear(),
         (d.getMonth() + 1).toString().padStart(2, '0'),
@@ -14,7 +14,7 @@ function setDate(d) {
     ].join('-');
 }
 
-function addDays(d, n) {
+export function addDays(d, n) {
     d.setDate(d.getDate() + n);
     return d;
 }
@@ -28,7 +28,7 @@ const BookCard = ({book_id, title, in_stock, price, picture}) => {
         if (Array.from(orders).find(e => (e.book_id === book_id)&&(e.state === 'CREATED')))
             setChosen(true);
         //если есть заказ с таким id книги, то ставим true
-    })
+    },[postOrderStatus, getOrdersStatus]);
     const makeOrder = useCallback(()=>{
         setChosen(true);
         let d = new Date();
@@ -39,11 +39,11 @@ const BookCard = ({book_id, title, in_stock, price, picture}) => {
             order_date:setDate(d),
             //pay_date:setDate(addDays(d, 2)),
             deliv_date:setDate(addDays(d, 2)),
-            state: OrderStatus.CREATED
+            state: OrderStates.CREATED
         }))
     },[postOrderStatus,dispatch]);
     //console.log(book_id);
-    return <Card className="card">
+    return (<Card className="card">
         <Card.Body className="cardBody">
             <Card.Img className="cardImage" src={picture}/>
             <div className="book">
@@ -58,7 +58,7 @@ const BookCard = ({book_id, title, in_stock, price, picture}) => {
             </div>
         </Card.Body>
         </Card>
-
+    )
 }
 
 export default BookCard;

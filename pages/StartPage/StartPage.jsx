@@ -12,7 +12,7 @@ function StartPage() {
             <div className="options">
                 <p>Добро пожаловать в интерфейс менеджера!</p>
                 <Link to="/addbook" className="link">-Добавить книги</Link>
-                <Link to="/editorders" className="link">-Список заказов</Link>
+                <Link to="/orders" className="link">-Список заказов</Link>
             </div>
         );
     return <Redirect to="/books" />;

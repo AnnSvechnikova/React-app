@@ -1,18 +1,25 @@
 //запросы к бэкенду (заказы)
 import {deleteApiRequest, getApiRequest, patchApiRequest, postApiRequest} from "../index";
 
-export const OrderStatus =Object.freeze({
+export const OrderStates =Object.freeze({
     CREATED: 'CREATED',
     CANCELLED:'CANCELLED',
     DELIVERED:'DELIVERED',
     PAID:'PAID'
 });
 
+export const getOrderStates = async (params)=>{
+    return await getApiRequest(`/orders/order_states/`, params)
+}
+
 export const getOrders = async (params)=>{
     return await getApiRequest('/orders/', {
         params:{
             user_id:params?.user_id,
-            status: params?.status
+            state: params?.state,
+            date_type: params?.date_type,
+            minDate:params?.minDate,
+            maxDate:params?.maxDate
         }
     } )
 }
@@ -25,6 +32,10 @@ export const deleteOrder = async (id)=>{
     return await deleteApiRequest(`/orders/${id}/` )
 }
 
+export const getOrderById = async(id)=>{
+    return await getApiRequest(`/orders/${id}/`)
+}
+
 export const getBookInfo = async (params)=>{
     return await getApiRequest(`/orders/get_book_info/`, {
         params:{
@@ -34,6 +45,6 @@ export const getBookInfo = async (params)=>{
 }
 
 export const patchOrder = async (params) =>{
-    const {id, ...other_params} = params;
-    return await patchApiRequest(`/orders/${id}/`, other_params);
+    const {order_id, ...other_params} = params;
+    return await patchApiRequest(`/orders/${order_id}/`, other_params);
 }

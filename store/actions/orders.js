@@ -1,8 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getOrders, postOrder, deleteOrder, getBookInfo, patchOrder} from "../../api/services/orders";
+import {getOrders, postOrder, deleteOrder, getBookInfo, patchOrder, getOrderStates, getOrderById} from "../../api/services/orders";
 
-export const getOrdersAction = createAsyncThunk('orders/orders',()=>{
-    return getOrders();
+export const getOrdersAction = createAsyncThunk('orders/orders',(params)=>{
+    return getOrders(params);
 })
 
 export const postOrderAction = createAsyncThunk('orders/postOrder',(params)=>{
@@ -19,4 +19,12 @@ export const getBookInfoAction = createAsyncThunk('orders/getBookInfo', (params)
 
 export const patchOrderAction = createAsyncThunk('orders/edit', (params) =>{
     return patchOrder(params);
+})
+
+export const getStatesAction = createAsyncThunk('orders/states', (params)=>{
+    return getOrderStates(params);
+})
+
+export const getOrderByIdAction = createAsyncThunk('orders/id', (id)=>{
+    return getOrderById(id);
 })

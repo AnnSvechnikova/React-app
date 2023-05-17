@@ -1,5 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getOrdersAction, deleteOrderAction, postOrderAction, getBookInfoAction, patchOrderAction} from "../actions/orders";
+import {
+    getOrdersAction,
+    deleteOrderAction,
+    postOrderAction,
+    getBookInfoAction,
+    patchOrderAction,
+    getStatesAction,
+    getOrderByIdAction
+} from "../actions/orders";
 
 const initialState = {
     getOrdersStatus: 'initial',
@@ -7,9 +15,12 @@ const initialState = {
     deleteOrderStatus: 'initial',
     getBookInfoStatus: 'initial',
     patchOrderStatus: 'initial',
+    getStatesStatus: 'initial',
+    getOrderByIdStatus: 'initial',
     orders: [],
     bookInfo: [],
     error: null,
+    states: [],
 };
 const ordersSlice = createSlice({
     name: 'orders',
@@ -30,6 +41,20 @@ const ordersSlice = createSlice({
             })
             .addCase(getOrdersAction.rejected, (state, { error }) => {
                 state.getOrdersStatus = 'error';
+                state.error = error;
+            });
+        builder
+            .addCase(getOrderByIdAction.pending, (state) => {
+                state.getOrderByIdStatus = 'fetching';
+                state.error = null;
+            })
+            .addCase(getOrderByIdAction.fulfilled, (state, { payload }) => {
+                state.getOrderByIdStatus = 'fetched';
+                state.orders = payload;
+                state.error = null;
+            })
+            .addCase(getOrderByIdAction.rejected, (state, { error }) => {
+                state.getOrderByIdStatus = 'error';
                 state.error = error;
             });
         builder
@@ -76,16 +101,30 @@ const ordersSlice = createSlice({
             });
         builder
             .addCase(patchOrderAction.pending, (state) => {
-                state.patchOrderStatus = 'FETCHING';
+                state.patchOrderStatus = 'fetching';
                 state.error = null;
             })
             .addCase(patchOrderAction.fulfilled, (state, { payload }) => {
-                state.patchOrderStatus = 'FETCHED';
+                state.patchOrderStatus = 'fetched';
                 state.order = state.orders.filter((order) => order.order_id !== payload.id);
                 state.error = null;
             })
             .addCase(patchOrderAction.rejected, (state, { error }) => {
-                state.patchOrderStatus = 'ERROR';
+                state.patchOrderStatus = 'error';
+                state.error = error;
+            });
+        builder
+            .addCase(getStatesAction.pending, (state) => {
+                state.getStatesStatus = 'fetching';
+                state.error = null;
+            })
+            .addCase(getStatesAction.fulfilled, (state, { payload }) => {
+                state.getStatesStatus = 'fetched';
+                state.states = payload
+                state.error = null;
+            })
+            .addCase(getStatesAction.rejected, (state, { error }) => {
+                state.getStatesStatus = 'error';
                 state.error = error;
             });
     },
